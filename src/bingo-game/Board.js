@@ -32,7 +32,7 @@ class Board extends React.Component {
         const squares = this.state.squares.slice();
         if ( !squares[i] && !this.state.gameOver ) {
         squares[i] = !squares[i]
-            const detectedPattern = Common.getPatternDetectedArray(squares, boardRowSize)
+            const detectedPattern = Common.getDetectedPatternIndexes(squares, boardRowSize, i)
             if ( detectedPattern.indexOf(true) > -1 ) {
                 this.setState({squares: squares, greens: detectedPattern, gameOver: true});
             }

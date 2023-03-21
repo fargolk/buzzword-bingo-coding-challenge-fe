@@ -3,56 +3,37 @@
 class Common {
 
 
-    static getEqualRow = ( arr, rowSize ) => {
+    static getEqualRow = ( arr, rowSize, idx ) => {
 
-        const len = arr.length
-        let i = 0, j = 0;
-        let detectFlag = false;
+        const rowNum = Math.floor(idx / rowSize)
+        let i = rowNum * rowSize;
         let equals = []
-        while ( i < rowSize && !detectFlag) {
-            j = i
-            equals = []
-            while ( j < len ) {
-                if ( arr[j] )
-                    equals.push(j)
-                else {
-                    equals = []
-                    break
-                }
-                j = j + rowSize
+        while ( i < ( rowNum + 1) * rowSize ) {
+            if (!arr[i]) {
+                equals = []
+                break;
             }
-            if ( equals.length === rowSize )
-                detectFlag = true
+            equals.push(i)
             i = i + 1
         }
         return equals
+
     }
 
+    static getEqualColumn = ( arr, rowSize, idx) => {
 
-    static getEqualColumn = ( arr, rowSize ) => {
-
-        let i = 0, j = 0;
-        let detectFlag = false;
+        const len = arr.length
+        let i = idx % rowSize
         let equals = []
-
-        while ( i < rowSize && !detectFlag) {
-            j = i * rowSize
-            equals = []
-            while ( j < (i + 1) * rowSize ) {
-                if ( arr[j] )
-                    equals.push(j)
-                else {
-                    equals = []
-                    break
-                }
-                j = j + 1
+        while ( i < len ) {
+            if (!arr[i]) {
+                equals = []
+                break;
             }
-            if ( equals.length === rowSize )
-                detectFlag = true
-            i = i + 1
+            equals.push(i)
+            i = i + rowSize
         }
         return equals
-
     }
 
 
@@ -94,22 +75,22 @@ class Common {
     }
 
 
-     static getEqualElementsIndex = ( arr, rowSize ) => {
+     static getEqualElementsIndex = ( arr, rowSize, idx ) => {
 
         const indexes = [].concat(
-            Common.getEqualColumn(arr, rowSize),
-                Common.getEqualRow(arr, rowSize),
-                    Common.getEqualDiagonal(arr, rowSize)
+            Common.getEqualColumn(arr, rowSize, idx),
+                Common.getEqualRow(arr, rowSize, idx),
+                    Common.getEqualDiagonal(arr, rowSize, idx)
         );
 
         return [...new Set(indexes)]
     }
 
 
-    static getPatternDetectedArray = (arr, rowSize ) => {
+    static getDetectedPatternIndexes = (arr, rowSize, idx ) => {
         const len = arr.length
         let i = 0
-        const indexes = Common.getEqualElementsIndex(arr, rowSize)
+        const indexes = Common.getEqualElementsIndex(arr, rowSize, idx)
         const detectedElements = Array(len).fill(false)
         while ( i < indexes.length ) {
             detectedElements[indexes[i]] = true
