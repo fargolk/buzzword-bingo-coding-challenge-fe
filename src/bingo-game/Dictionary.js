@@ -103,4 +103,4 @@ let Dictionary=[
     "Zoomable",
 ];
 
-export default Dictionary;
+export { Dictionary };

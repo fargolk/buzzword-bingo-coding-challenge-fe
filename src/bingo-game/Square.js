@@ -1,21 +1,24 @@
 import React from "react";
 import {Button} from "@mui/material";
+import './css/Square.css';
+
 
 class Square extends React.Component {
     render() {
         return (
             <Button
-                className="square"
+                className="Square"
                 onClick={() => this.props.onClick()}
                 variant={this.props.value ? "contained":"outlined"}
+                color={this.props.isGreen ? "success" : "primary"}
             >
-                "word"
+                {this.props.word}
             </Button>
         );
     }
 }
 
-export default Square;
+export { Square };
 
 
 

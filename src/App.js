@@ -1,7 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
+import './bingo-game/css/Board.css'
 import React from "react";
-import Board from "./bingo-game/Board";
+import {Board} from "./bingo-game/Board";
+
 
 function App() {
   return (
@@ -11,10 +12,9 @@ function App() {
           Buzzword Bingo
         </p>
       </header>
-      <div className="game-board">
+      <div className="Game-board">
         <Board />
       </div>
-
     </div>
   );
 }

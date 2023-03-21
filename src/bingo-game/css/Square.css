@@ -1,0 +1,9 @@
+.Square {
+    height: 16vh;
+    width: 16vh;
+    text-transform: none !important;
+    padding: 8vmin 2vmin !important;
+    text-after-overflow: ellipsis !important;
+    font-size: 1.8vmin !important;
+    margin: 0.1vmin !important;
+}
